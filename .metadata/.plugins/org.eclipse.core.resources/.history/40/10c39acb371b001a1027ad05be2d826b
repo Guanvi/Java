@@ -1,0 +1,17 @@
+package service.impl;
+
+import service.IStudentService;
+
+public class IStudentServiceImpl implements IStudentService {
+
+	
+	
+	private IStudentDAO studentDAO=new IStudentDAOImpl();
+	
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

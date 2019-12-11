@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="studentService" class="com.gem.demo.service.impl.StudentServiceImpl">
+		<!-- 基本数据类型  String  value -->
+		<constructor-arg name="name" value="张三"></constructor-arg>
+		<constructor-arg name="age" value="30"></constructor-arg>
+		<!-- 其他类型  ref="bean-id"-->
+		<constructor-arg name="birth" ref="now"></constructor-arg>
+	</bean>
+	<bean id="now" class="java.util.Date"></bean>
+	
+	<!-- set注入 常用  灵活-->
+	<bean id="studentService2" class="com.gem.demo.service.impl.StudentServiceImpl2">
+		<property name="name" value="李四"></property>
+		<property name="age" value="20"></property>
+		<property name="birth" ref="now"></property>
+	</bean>
+	<!-- 复杂数据类型注入 -->
+	<bean id="studentService3" class="com.gem.demo.service.impl.StudentServiceImpl3">
+		<property name="mystrs">
+			<array>
+				<value>AAA</value>
+				<value>BBB</value>
+			</array>
+		</property>
+		<property name="myList">
+			<list>
+				<value>CCC</value>
+				<value>DDD</value>
+			</list>
+		</property>
+		<property name="mySet">
+			<set>
+				<value>EEE</value>
+				<value>FFF</value>
+			</set>
+		</property>
+		<property name="myMap">
+			<map>
+				<entry key="111" value="GGG"></entry>
+				<entry key="222">
+					<value>HHH</value>
+				</entry>
+			</map>
+		</property>
+		<property name="myPro">
+			<props>
+				<prop key="1">MMM</prop>
+				<prop key="2">NNN</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

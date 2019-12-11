@@ -1,0 +1,16 @@
+package dao.impl;
+
+import dao.IStudentDAO;
+
+public class IStudentDAOImpl implements IStudentDAO {
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+		
+		System.out.println("Hello");
+
+	}
+
+}
