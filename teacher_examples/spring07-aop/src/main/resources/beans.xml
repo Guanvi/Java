@@ -1,0 +1,38 @@
+<?xml1 version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+     <!-- 业务bean-->
+     <bean id="studentService" class="com.gem.demo.service.impl.StudentServiceImpl"></bean>
+		<!-- 通知bean -->
+	<bean id="log" class="com.gem.demo.util.LoggerAdice"></bean>
+	<!-- aop配置 -->
+	<aop:config>
+		<!-- 切入点 :定义连接点 
+			连接点表达式expression="execution()"
+			* com.gem.demo.service.impl.*.*(..)
+		-->
+		<aop:pointcut expression="execution(* com.gem.demo.service.impl.*.*(..))" id="pl"/>
+		<!-- 切面：切入点和通知 -->
+		<aop:aspect id="asp" ref="log">
+			<!-- 通知类型 
+				after：最终通知
+				after-returning:正常后置
+				after-throwing：异常后置
+				before:前置通知
+				around:环绕通知
+			-->
+			<!-- <aop:before method="printLog" pointcut-ref="pl"/>
+			<aop:after method="txManage" pointcut-ref="pl"/>
+			<aop:after-returning method="afterReturn" pointcut-ref="pl"/>
+			<aop:after-throwing method="afterException" pointcut-ref="pl"/> -->
+			<aop:around method="aroundAdvice" pointcut-ref="pl"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+</beans>
